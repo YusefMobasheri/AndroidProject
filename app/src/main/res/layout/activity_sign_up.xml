@@ -19,20 +19,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_mic_black_24dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/logo"
+                    android:gravity="center"
+                    android:text="Speech Dictionary"
+                    android:textColor="#a7ffffff"
+                    android:textSize="16sp" />
+            </RelativeLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
                 android:textColor="#FFF"
                 android:text="Sign Up"
+                android:gravity="center"
                 android:textStyle="bold"
                 android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="30dp">
+                android:paddingRight="30dp"
+                android:paddingLeft="30dp"
+                >
 
                 <TextView
                     android:layout_width="match_parent"

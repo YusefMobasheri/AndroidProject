@@ -153,6 +153,7 @@ public class SignUpActivity extends AppCompatActivity {
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected() && cm.getActiveNetworkInfo().isAvailable();
     }
 
+    @org.jetbrains.annotations.Contract(pure = true)
     private String handleError(Integer errorCode){
         String message;
         switch (errorCode){
@@ -172,7 +173,7 @@ public class SignUpActivity extends AppCompatActivity {
                 message = "Action invalid.";
                 break;
             case -6:
-                message = "Please fill all * fields.";
+                message = "Please Fill all fields.";
                 break;
             case -7:
                 message = "Oops! Registration unsuccessful. please try again.";

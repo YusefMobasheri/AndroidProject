@@ -22,7 +22,7 @@ tools:context="com.rahbod.androidproject.IntroActivity">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp">
+            android:layout_height="200dp">
 
             <ImageView
                 android:id="@+id/logo"
@@ -41,11 +41,24 @@ tools:context="com.rahbod.androidproject.IntroActivity">
                 android:textSize="16sp" />
         </RelativeLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="#FFF"
+            android:text="Log In"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="30dp">
+            android:paddingRight="30dp"
+            android:paddingLeft="30dp"
+            >
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
