@@ -6,10 +6,14 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
+import android.net.rtp.AudioStream;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,65 +29,43 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class HomeActivity extends AppCompatActivity {
-    private static final int ADD_REQUEST = 100;
-
-    DbHelper dbHelper;
-    ListView listView;
-    FloatingActionButton fba;
+    Button btnShowList;
+    Button btnCompare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        dbHelper = new DbHelper(this);
-
-        fba = (FloatingActionButton) findViewById(R.id.fab);
-        fba.setOnClickListener(new View.OnClickListener() {
+        btnShowList = (Button) findViewById(R.id.btnShowList);
+        btnShowList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent AddVoiceIntent = new Intent(HomeActivity.this, AddVoiceActivity.class);
-                startActivityForResult(AddVoiceIntent, ADD_REQUEST);
+                Intent voiceListIn = new Intent(HomeActivity.this, VoiceListActivity.class);
+                startActivity(voiceListIn);
             }
         });
-
-        listView = (ListView) findViewById(R.id.listView);
-        refreshAdapter();
-    }
-
-    private void refreshAdapter() {
-        SQLiteDatabase db2 = dbHelper.getReadableDatabase();
-        Cursor c = db2.rawQuery("SELECT * FROM sounds", null);
-        if(c.getCount() > 0){
-            List<Sound> data = new ArrayList<>();
-            while (c.moveToNext()) {
-                Sound sound = new Sound(c.getString(c.getColumnIndex("voice")), c.getString(c.getColumnIndex("title")), c.getString(c.getColumnIndex("user")));
-                data.add(sound);
+        btnCompare= (Button) findViewById(R.id.btnCompare);
+        btnCompare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent compareIn = new Intent(HomeActivity.this, CompareActivity.class);
+                startActivity(compareIn);
             }
-            c.close();
-            SoundAdapter customAdapter = new SoundAdapter(this, data);
-            listView.setAdapter(customAdapter);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ADD_REQUEST && resultCode == RESULT_OK)
-        {
-            refreshAdapter();
-            Toast.makeText(this, "List View Refreshed.", Toast.LENGTH_SHORT).show();
-        }
+        });
     }
 
     boolean doubleBackToExitPressedOnce = false;

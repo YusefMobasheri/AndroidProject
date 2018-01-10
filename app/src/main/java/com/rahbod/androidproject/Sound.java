@@ -1,42 +1,47 @@
 package com.rahbod.androidproject;
 
-public class Sound {
+class Sound {
     private Integer id;
     private String user;
-    private String voiceUri;
+    private byte[] voiceStream;
     private String title;
 
-    Sound(String uri, String title, String user){
+    Sound(Integer id, byte[] uri, String title, String user) {
+        setId(id);
         setVoiceUri(uri);
         setTitle(title);
         setUser(user);
     }
 
-    public String getUser() {
+    String getUser() {
         return user;
     }
 
-    public void setUser(String user) {
+    void setUser(String user) {
         this.user = user;
     }
 
-    public Integer getId() {
+    void setId(Integer id) {
+        this.id = id;
+    }
+
+    Integer getId() {
         return id;
     }
 
-    public String getTitle() {
+    String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    void setTitle(String title) {
         this.title = title;
     }
 
-    public String getVoiceUri() {
-        return voiceUri;
+    byte[] getVoiceUri() {
+        return voiceStream;
     }
 
-    public void setVoiceUri(String voiceUri) {
-        this.voiceUri = voiceUri;
+    void setVoiceUri(byte[] voiceStream) {
+        this.voiceStream = voiceStream;
     }
 }
